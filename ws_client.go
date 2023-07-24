@@ -31,6 +31,7 @@ func (obj *WsClientIns) CreateConn(url, query string) error {
 	conn, _, err := websocket.DefaultDialer.Dial(url, nil)
 	if err == nil {
 		obj.conn = conn
+		obj.exitChan = make(chan struct{})
 	}
 	return err
 }
